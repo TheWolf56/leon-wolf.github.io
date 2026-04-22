@@ -3,208 +3,632 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leon Wolf | Senior Systems Architect & Developer</title>
+    <title>Leon Wolf — SAP Technical Consultant & Solution Architect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #020617;
-            --card-bg: #0f172a;
-            --border: #1e293b;
-            --accent: #22d3ee;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
+            --bg: #F6F1E9;
+            --bg-alt: #EDE7DA;
+            --ink: #1B1410;
+            --ink-2: #7A6A5A;
+            --ink-3: #B5A898;
+            --accent: #B83818;
+            --accent-light: #F0E8E4;
+            --border: #DDD4C4;
+            --mono: 'DM Mono', monospace;
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'DM Sans', system-ui, sans-serif;
         }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            background-color: var(--bg);
-            color: var(--text-primary);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--sans);
+            font-weight: 300;
+            line-height: 1.65;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
+        /* ── FADE-IN ANIMATION ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .reveal-1 { animation-delay: 0.1s; }
+        .reveal-2 { animation-delay: 0.25s; }
+        .reveal-3 { animation-delay: 0.4s; }
+        .reveal-4 { animation-delay: 0.55s; }
+        .reveal-5 { animation-delay: 0.7s; }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: none; }
         }
 
-        /* Hero Section */
-        header {
-            margin-bottom: 6rem;
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(34, 211, 238, 0.1);
-            color: var(--accent);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid rgba(34, 211, 238, 0.2);
-            margin-bottom: 2rem;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent);
-        }
-
-        h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin: 0;
-            letter-spacing: -0.02em;
-        }
-
-        .typewriter {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-            border-right: 2px solid var(--accent);
-            width: fit-content;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typing 3.5s steps(40, end), blink .75s step-end infinite;
-        }
-
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--accent) } }
-
-        /* Experience Section */
-        .section-title {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent);
-            margin-bottom: 2rem;
-        }
-
-        .experience-grid {
+        /* ── HERO ── */
+        .hero {
+            min-height: 100svh;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-rows: 1fr auto;
+            padding: 5rem 5vw 3rem;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 3.5rem;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 2rem;
+            height: 1px;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .hero-body { align-self: end; }
+
+        .hero-name {
+            font-family: var(--serif);
+            font-weight: 900;
+            font-size: clamp(5rem, 14vw, 13rem);
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            color: var(--ink);
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-name em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .hero-role {
+            font-family: var(--mono);
+            font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+            color: var(--ink-2);
+            line-height: 1.7;
+        }
+
+        .hero-years {
+            font-family: var(--serif);
+            font-size: clamp(4rem, 10vw, 9rem);
+            font-weight: 900;
+            color: var(--border);
+            line-height: 1;
+            position: absolute;
+            right: 5vw;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .hero-years span {
+            display: block;
+            font-size: 1.4rem;
+            font-family: var(--mono);
+            font-weight: 400;
+            color: var(--ink-3);
+            letter-spacing: 0.1em;
+            text-align: right;
+            margin-top: 0.5rem;
+        }
+
+        /* ── MARQUEE ── */
+        .marquee-wrap {
+            background: var(--ink);
+            overflow: hidden;
+            padding: 1rem 0;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 0;
+            width: max-content;
+            animation: marquee 28s linear infinite;
+        }
+
+        .marquee-track:hover { animation-play-state: paused; }
+
+        @keyframes marquee { to { transform: translateX(-50%); } }
+
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 0 2rem;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--bg-alt);
+            white-space: nowrap;
+        }
+
+        .marquee-sep {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* ── SECTIONS ── */
+        section { padding: 6rem 5vw; }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-bottom: 4rem;
+        }
+
+        .section-label .num {
+            color: var(--accent);
+            font-size: 0.65rem;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── EXPERTISE LIST ── */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .expertise-item {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 4rem 1fr;
+            gap: 2rem;
+            transition: background 0.3s ease;
+        }
+
+        .expertise-item:nth-child(odd) { padding-right: 4rem; border-right: 1px solid var(--border); }
+        .expertise-item:nth-child(even) { padding-left: 4rem; }
+
+        .expertise-item:nth-last-child(-n+2) { border-bottom: none; }
+
+        .expertise-num {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--border);
+            line-height: 1;
+            padding-top: 0.2rem;
+        }
+
+        .expertise-content h3 {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .expertise-content p {
+            font-size: 0.9rem;
+            color: var(--ink-2);
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+
+        .tech-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .pill {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.05em;
+            background: var(--bg-alt);
+            color: var(--ink-2);
+            padding: 0.2rem 0.6rem;
+            border-radius: 2px;
+            border: 1px solid var(--border);
+        }
+
+        /* ── HIGHLIGHT BLOCK ── */
+        .highlight-block {
+            background: var(--ink);
+            color: var(--bg);
+            padding: 6rem 5vw;
+        }
+
+        .highlight-inner {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .highlight-stat {
+            font-family: var(--serif);
+            font-size: clamp(5rem, 10vw, 9rem);
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .highlight-stat small {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--bg-alt);
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        .highlight-text {
+            font-family: var(--serif);
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 400;
+            line-height: 1.4;
+            color: var(--bg);
+        }
+
+        .highlight-text em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        /* ── INDUSTRIES ── */
+        .industries-section { background: var(--bg-alt); }
+
+        .industries-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .industries-table tr {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .industries-table tr:last-child { border-bottom: none; }
+
+        .industries-table td {
+            padding: 1.5rem 0;
+            font-size: 1.1rem;
+            vertical-align: middle;
+        }
+
+        .industries-table .ind-num {
+            width: 3.5rem;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--ink-3);
+        }
+
+        .industries-table .ind-name {
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .industries-table .ind-arrow {
+            text-align: right;
+            color: var(--border);
+            font-size: 1.3rem;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 4rem 5vw;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: end;
             gap: 2rem;
         }
 
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .footer-name {
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 0.5rem;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(34, 211, 238, 0.4);
-            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.5);
-        }
-
-        .card h3 {
-            margin: 0 0 1rem 0;
-            font-size: 1.5rem;
-        }
-
-        .card p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        /* Tech Stack */
-        .tech-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .chip {
-            background: #1e293b;
-            padding: 0.3rem 0.8rem;
-            border-radius: 0.5rem;
+        .footer-location {
+            font-family: var(--mono);
             font-size: 0.75rem;
-            color: var(--text-primary);
-            border: 1px solid var(--border);
+            letter-spacing: 0.1em;
+            color: var(--ink-3);
+            text-transform: uppercase;
         }
 
-        /* Footer / Contact */
-        footer {
-            margin-top: 8rem;
-            padding-top: 4rem;
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--ink-2);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover { color: var(--accent); }
+
+        .footer-links a::after {
+            content: '↗';
+            font-size: 0.75rem;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover::after { opacity: 1; }
+
+        .footer-copy {
+            grid-column: 1 / -1;
+            padding-top: 2rem;
             border-top: 1px solid var(--border);
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            color: var(--ink-3);
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            color: var(--text-secondary);
         }
 
-        .contact-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            margin-left: 2rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .contact-links a:hover { color: var(--accent); }
-
+        /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            footer { flex-direction: column; gap: 2rem; text-align: center; }
+            .hero { padding: 3.5rem 6vw 3rem; min-height: 100svh; }
+            .hero-years { display: none; }
+            .expertise-grid { grid-template-columns: 1fr; }
+            .expertise-item:nth-child(odd) { padding-right: 0; border-right: none; }
+            .expertise-item:nth-child(even) { padding-left: 0; }
+            .expertise-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+            .expertise-item:last-child { border-bottom: none; }
+            .highlight-inner { grid-template-columns: 1fr; gap: 2rem; }
+            footer { grid-template-columns: 1fr; }
+            .footer-links { align-items: flex-start; }
+            .footer-copy { flex-direction: column; gap: 0.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <div class="status-badge">
-                <span class="status-dot"></span>
-                Available for high-scale architecture
-            </div>
-            <h1>Leon Wolf</h1>
-            <div class="typewriter">> Senior Systems Architect _</div>
-        </header>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-eyebrow reveal reveal-1">
+            Verfügbar für Projekte · Würzburg & Remote
+        </div>
 
-        <h2 class="section-title">Core Expertise</h2>
-        <div class="experience-grid">
-            <div class="card">
-                <h3>Cloud Architecture</h3>
-                <p>Über 12 Jahre Erfahrung in der Konzeptionierung von hochverfügbaren Infrastrukturen und Microservices.</p>
-                <div class="tech-chips">
-                    <span class="chip">Kubernetes</span>
-                    <span class="chip">AWS</span>
-                    <span class="chip">Docker</span>
-                    <span class="chip">Terraform</span>
-                </div>
-            </div>
+        <div class="hero-body">
+            <h1 class="hero-name reveal reveal-2">
+                Leon<br><em>Wolf</em>
+            </h1>
 
-            <div class="card">
-                <h3>Backend Engineering</h3>
-                <p>Entwicklung performanter Backends mit Fokus auf Clean Code, Skalierbarkeit und Security-Standards.</p>
-                <div class="tech-chips">
-                    <span class="chip">Go</span>
-                    <span class="chip">Rust</span>
-                    <span class="chip">Node.js</span>
-                    <span class="chip">PostgreSQL</span>
+            <div class="hero-meta reveal reveal-3">
+                <div class="hero-role">
+                    SAP Technical Consultant<br>
+                    & Solution Architect
                 </div>
             </div>
         </div>
 
-        <footer>
-            <div>&copy; 2026 Leon Wolf</div>
-            <div class="contact-links">
-                <a href="mailto:hallo@leon-wolf.dev">Email</a>
-                <a href="https://github.com/DEIN-GITHUB-NAME" target="_blank">GitHub</a>
-                <a href="#">LinkedIn</a>
-            </div>
-        </footer>
+        <div class="hero-years reveal reveal-4" aria-hidden="true">
+            12+<span>Jahre Erfahrung</span>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap" aria-hidden="true">
+        <div class="marquee-track">
+            <div class="marquee-item"><span class="marquee-sep"></span>S/4HANA</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>SAP TM</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>SAP EWM</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>ABAP OO</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>Adobe Forms</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>Fiori / UI5</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>REST API</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>BRF+</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>BOPF</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>Data Migration</div>
+            <!-- Dupliziert für nahtlose Schleife -->
+            <div class="marquee-item"><span class="marquee-sep"></span>S/4HANA</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>SAP TM</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>SAP EWM</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>ABAP OO</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>Adobe Forms</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>Fiori / UI5</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>REST API</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>BRF+</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>BOPF</div>
+            <div class="marquee-item"><span class="marquee-sep"></span>Data Migration</div>
+        </div>
     </div>
+
+    <!-- EXPERTISE -->
+    <section>
+        <div class="section-label">
+            <span class="num">01</span>Technische Schwerpunkte
+        </div>
+
+        <div class="expertise-grid">
+            <div class="expertise-item">
+                <div class="expertise-num">01</div>
+                <div class="expertise-content">
+                    <h3>SAP TM – Transportation Management</h3>
+                    <p>Vollständige S/4HANA embedded TM-Implementierungen — von der Transportplanung und Optimierer-Konfiguration bis zur Frachtabrechnung. Mehrere globale Rollouts erfolgreich abgeschlossen.</p>
+                    <div class="tech-pills">
+                        <span class="pill">BOPF</span>
+                        <span class="pill">FPM</span>
+                        <span class="pill">BRF+</span>
+                        <span class="pill">Embedded TM</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="expertise-item">
+                <div class="expertise-num">02</div>
+                <div class="expertise-content">
+                    <h3>SAP EWM – Extended Warehouse Management</h3>
+                    <p>Tiefe Expertise in TM/EWM-Integration (Side-by-Side & Embedded). Entwicklung kundenspezifischer Logistikprozesse, RF-Dialoge und Warenausgangsprozesse.</p>
+                    <div class="tech-pills">
+                        <span class="pill">RF-Dialoge</span>
+                        <span class="pill">BAdI</span>
+                        <span class="pill">SOA Manager</span>
+                        <span class="pill">Warenausgang</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="expertise-item">
+                <div class="expertise-num">03</div>
+                <div class="expertise-content">
+                    <h3>Output Management & Adobe Forms</h3>
+                    <p>Konzeption und Umsetzung komplexer Druckbelege und Formular-Templates mit Adobe Interactive Forms (IFBA) — skalierbar für internationale Rollouts.</p>
+                    <div class="tech-pills">
+                        <span class="pill">Adobe IFBA</span>
+                        <span class="pill">Positionslisten</span>
+                        <span class="pill">Global Rollout</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="expertise-item">
+                <div class="expertise-num">04</div>
+                <div class="expertise-content">
+                    <h3>Modern ABAP & System Integration</h3>
+                    <p>Technisches Design und Entwicklung robuster RESTful APIs zur Anbindung externer Systeme. Objektorientiertes ABAP und Clean-Code-Ansätze für langlebige Architekturen.</p>
+                    <div class="tech-pills">
+                        <span class="pill">ABAP OO</span>
+                        <span class="pill">REST API</span>
+                        <span class="pill">Fiori / UI5</span>
+                        <span class="pill">Data Migration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIGHLIGHT -->
+    <div class="highlight-block">
+        <div class="highlight-inner">
+            <div class="highlight-stat">
+                12+<small>Jahre · S/4HANA</small>
+            </div>
+            <p class="highlight-text">
+                Von der Chemie bis zum Schiffbau —
+                <em>komplexe Logistikprozesse</em> in
+                Systeme übersetzen, die tatsächlich
+                im Alltag funktionieren.
+            </p>
+        </div>
+    </div>
+
+    <!-- INDUSTRIES -->
+    <section class="industries-section">
+        <div class="section-label">
+            <span class="num">02</span>Branchenexpertise
+        </div>
+
+        <table class="industries-table" aria-label="Branchen">
+            <tbody>
+                <tr>
+                    <td class="ind-num">01</td>
+                    <td class="ind-name">Chemie & Kunststoffe</td>
+                    <td class="ind-arrow">→</td>
+                </tr>
+                <tr>
+                    <td class="ind-num">02</td>
+                    <td class="ind-name">Automotive</td>
+                    <td class="ind-arrow">→</td>
+                </tr>
+                <tr>
+                    <td class="ind-num">03</td>
+                    <td class="ind-name">Fertigungsindustrie</td>
+                    <td class="ind-arrow">→</td>
+                </tr>
+                <tr>
+                    <td class="ind-num">04</td>
+                    <td class="ind-name">Schiffbau</td>
+                    <td class="ind-arrow">→</td>
+                </tr>
+                <tr>
+                    <td class="ind-num">05</td>
+                    <td class="ind-name">Medizintechnik</td>
+                    <td class="ind-arrow">→</td>
+                </tr>
+                <tr>
+                    <td class="ind-num">06</td>
+                    <td class="ind-name">Lebensmittel & Handel</td>
+                    <td class="ind-arrow">→</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div>
+            <div class="footer-name">Leon Wolf</div>
+            <div class="footer-location">Würzburg, Bayern · Deutschland</div>
+        </div>
+
+        <div class="footer-links">
+            <a href="mailto:kontakt@leon-wolf.dev">kontakt@leon-wolf.dev</a>
+            <a href="https://github.com/TheWolf56" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/leonwolf1/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+
+        <div class="footer-copy">
+            <span>© 2026 Leon Wolf</span>
+            <span>SAP Technical Consultant & Solution Architect</span>
+        </div>
+    </footer>
 
 </body>
 </html>
