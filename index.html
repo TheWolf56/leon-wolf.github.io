@@ -1,698 +1,84 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leon Wolf — SAP Developer</title>
-    <meta name="description" content="Freelance SAP Developer & Solution Architect aus Würzburg. 10+ Jahre Erfahrung in SAP TM, EWM, ABAP und S/4HANA.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
-
-    <style>
-        @font-face {
-            font-family: 'IBM Plex Sans';
-            font-style: normal;
-            font-weight: 300;
-            src: url('ibm-plex-sans-v23-latin-300.woff2') format('woff2');
-        }
-        @font-face {
-            font-family: 'IBM Plex Sans';
-            font-style: normal;
-            font-weight: 400;
-            src: url('ibm-plex-sans-v23-latin-regular.woff2') format('woff2');
-        }
-        @font-face {
-            font-family: 'IBM Plex Sans';
-            font-style: normal;
-            font-weight: 500;
-            src: url('ibm-plex-sans-v23-latin-500.woff2') format('woff2');
-        }
-        @font-face {
-            font-family: 'IBM Plex Sans';
-            font-style: normal;
-            font-weight: 600;
-            src: url('ibm-plex-sans-v23-latin-600.woff2') format('woff2');
-        }
-        @font-face {
-            font-family: 'IBM Plex Mono';
-            font-style: normal;
-            font-weight: 400;
-            src: url('ibm-plex-mono-v20-latin-regular.woff2') format('woff2');
-        }
-        @font-face {
-            font-family: 'IBM Plex Mono';
-            font-style: normal;
-            font-weight: 500;
-            src: url('ibm-plex-mono-v20-latin-500.woff2') format('woff2');
-        }
-
-        :root {
-            --bg:        #F9F9F7;
-            --bg-2:      #F1F0EC;
-            --bg-3:      #E6E4DE;
-            --ink:       #1A1A1D;
-            --ink-2:     #4F4F58;
-            --ink-3:     #9C9CA8;
-            --accent:    #0F62FE;
-            --accent-bg: #EDF3FF;
-            --accent-dk: #0043CE;
-            --line:      #E2E2E6;
-            --sans:      'IBM Plex Sans', system-ui, sans-serif;
-            --mono:      'IBM Plex Mono', 'Courier New', monospace;
-        }
-
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-
-        body {
-            background: var(--bg);
-            color: var(--ink);
-            font-family: var(--sans);
-            font-weight: 300;
-            font-size: 15px;
-            line-height: 1.65;
-            overflow-x: hidden;
-        }
-
-        /* NAV */
-        header {
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(249,249,247,0.94);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--line);
-            padding: 0 5vw; height: 50px;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .nav-name { font-family: var(--mono); font-size: 0.78rem; font-weight: 500; color: var(--ink); }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { font-size: 0.8rem; color: var(--ink-2); text-decoration: none; transition: color 0.15s; }
-        .nav-links a:hover { color: var(--accent); }
-
-        /* HERO */
-        .hero {
-            padding: 4.5rem 5vw 4rem;
-            border-bottom: 1px solid var(--line);
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 4rem; align-items: start;
-        }
-        .hero-kicker {
-            font-family: var(--mono); font-size: 0.7rem;
-            letter-spacing: 0.12em; text-transform: uppercase;
-            color: var(--accent); margin-bottom: 1.5rem;
-            display: flex; align-items: center; gap: 0.6rem;
-        }
-        .hero-kicker::before {
-            content: ''; display: inline-block;
-            width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
-        }
-        h1 {
-            font-size: clamp(2.6rem, 4.5vw, 3.8rem);
-            font-weight: 600; line-height: 1.05;
-            letter-spacing: -0.035em; color: var(--ink); margin-bottom: 1.4rem;
-        }
-        h1 .role {
-            display: block;
-            font-size: clamp(1rem, 1.6vw, 1.2rem);
-            font-weight: 300; letter-spacing: -0.01em;
-            color: var(--ink-2); margin-top: 0.6rem;
-        }
-        .hero-intro {
-            font-size: 0.9rem; color: var(--ink-2);
-            line-height: 1.75; max-width: 46ch;
-        }
-
-        /* HERO STATS TABLE */
-        .hero-right {
-            display: flex; flex-direction: column;
-            border: 1px solid var(--line); border-radius: 8px;
-            overflow: hidden; background: var(--bg);
-        }
-        .stat-row {
-            display: flex; align-items: center;
-            padding: 1.1rem 1.5rem;
-            border-bottom: 1px solid var(--line); gap: 1rem;
-        }
-        .stat-row:last-child { border-bottom: none; }
-        .stat-key {
-            font-family: var(--mono); font-size: 0.62rem;
-            letter-spacing: 0.1em; text-transform: uppercase;
-            color: var(--ink-3); width: 9rem; flex-shrink: 0;
-        }
-        .stat-val { font-size: 0.85rem; color: var(--ink); font-weight: 400; }
-        .stat-val strong { font-weight: 500; }
-        .stat-badge {
-            margin-left: auto;
-            font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em;
-            background: var(--accent-bg); color: var(--accent-dk);
-            padding: 0.15rem 0.5rem; border-radius: 3px;
-        }
-
-        /* MARQUEE */
-        .marquee-outer { background: var(--ink); overflow: hidden; padding: 0.8rem 0; }
-        .marquee-inner { display: flex; width: max-content; }
-        .marquee-inner.running { animation: scroll-m linear infinite; }
-        @keyframes scroll-m { from { transform: translateX(0); } to { transform: translateX(var(--ms)); } }
-        .marquee-set { display: flex; align-items: center; flex-shrink: 0; }
-        .marquee-item {
-            display: flex; align-items: center; gap: 0.85rem;
-            padding: 0 1.4rem; font-family: var(--mono);
-            font-size: 0.68rem; letter-spacing: 0.14em;
-            text-transform: uppercase; color: #9F9FAD;
-            white-space: nowrap; user-select: none;
-        }
-        .marquee-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-
-        /* SECTIONS */
-        .section { padding: 4.5rem 5vw; }
-        .section + .section { border-top: 1px solid var(--line); }
-        .sec-hd { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; }
-        .sec-num { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; color: var(--accent); }
-        .sec-title { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); }
-        .sec-line { flex: 1; height: 1px; background: var(--line); }
-
-        /* SKILL GRID */
-        .skill-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
-        }
-        .skill-card {
-            padding: 1.75rem 2rem;
-            border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
-            transition: background 0.2s;
-        }
-        .skill-card:nth-child(3n) { border-right: none; }
-        .skill-card:nth-last-child(-n+3) { border-bottom: none; }
-        .skill-card:hover { background: var(--bg-2); }
-        .sk-area { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.6rem; }
-        .sk-title { font-size: 0.88rem; font-weight: 500; color: var(--ink); margin-bottom: 1rem; line-height: 1.3; }
-        .pill-row { display: flex; flex-wrap: wrap; gap: 0.3rem; }
-        .pill {
-            font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.04em;
-            background: var(--bg-2); color: var(--ink-2);
-            padding: 0.18rem 0.5rem; border-radius: 3px; border: 1px solid var(--line);
-        }
-
-        /* PROJECTS */
-        .projects-bg { background: var(--bg-2); }
-        .projects-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 1px; background: var(--line);
-            border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
-        }
-        .proj-card { background: var(--bg); padding: 2rem 2.25rem; transition: background 0.2s; }
-        .proj-card:hover { background: var(--bg-2); }
-        .proj-company {
-            font-family: var(--mono); font-size: 0.6rem;
-            letter-spacing: 0.1em; text-transform: uppercase;
-            color: var(--ink-3); margin-bottom: 0.45rem;
-        }
-        .proj-title { font-size: 0.9rem; font-weight: 500; color: var(--ink); margin-bottom: 1rem; line-height: 1.35; }
-        .proj-tasks { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem; }
-        .proj-tasks li { font-size: 0.8rem; color: var(--ink-2); padding-left: 1rem; position: relative; line-height: 1.5; }
-        .proj-tasks li::before { content: '—'; position: absolute; left: 0; color: var(--ink-3); font-size: 0.7rem; }
-        .proj-pills { display: flex; flex-wrap: wrap; gap: 0.3rem; }
-        .proj-pill {
-            font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.04em;
-            background: var(--accent-bg); color: var(--accent-dk);
-            padding: 0.15rem 0.45rem; border-radius: 3px;
-        }
-
-        /* INDUSTRIES */
-        .ind-row {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
-        }
-        .ind-cell {
-            display: flex; align-items: center; gap: 1rem;
-            padding: 1.2rem 1.75rem;
-            border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
-            transition: background 0.2s;
-        }
-        .ind-cell:nth-child(3n) { border-right: none; }
-        .ind-cell:nth-last-child(-n+3) { border-bottom: none; }
-        .ind-cell:hover { background: var(--bg-2); }
-        .ind-num { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-3); }
-        .ind-name { font-size: 0.88rem; color: var(--ink); }
-
-        /* CAREER */
-        .career-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .career-item {
-            display: grid;
-            grid-template-columns: 14rem 1fr;
-            gap: 0;
-            border-bottom: 1px solid var(--line);
-            transition: background 0.2s;
-        }
-        .career-item:last-child { border-bottom: none; }
-        .career-item:hover { background: var(--bg-2); }
-        .career-left {
-            padding: 1.6rem 2rem;
-            border-right: 1px solid var(--line);
-            background: var(--bg-2);
-        }
-        .career-period {
-            font-family: var(--mono);
-            font-size: 0.62rem;
-            letter-spacing: 0.08em;
-            color: var(--ink-3);
-            margin-bottom: 0.3rem;
-        }
-        .career-duration {
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            font-weight: 500;
-            color: var(--accent);
-        }
-        .career-right {
-            padding: 1.6rem 2rem;
-        }
-        .career-role {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--ink);
-            margin-bottom: 0.25rem;
-        }
-        .career-company {
-            font-size: 0.8rem;
-            color: var(--ink-2);
-            margin-bottom: 0.7rem;
-        }
-        .career-note {
-            font-size: 0.75rem;
-            color: var(--ink-3);
-            font-style: italic;
-        }
-
-        /* FOOTER */
-        footer {
-            padding: 2.75rem 5vw; border-top: 1px solid var(--line);
-            display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2rem;
-        }
-        .ft-name { font-size: 0.95rem; font-weight: 500; color: var(--ink); }
-        .ft-loc { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-top: 0.2rem; }
-        .ft-links { display: flex; gap: 1.5rem; }
-        .ft-links a { font-size: 0.8rem; color: var(--ink-2); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.15s; }
-        .ft-links a:hover { color: var(--accent); }
-        .ft-links svg { width: 12px; height: 12px; opacity: 0.5; }
-        .ft-bottom {
-            grid-column: 1/-1; padding-top: 1.75rem; border-top: 1px solid var(--line);
-            display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
-            font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.06em; color: var(--ink-3);
-        }
-        .ft-bottom a { color: inherit; text-decoration: none; transition: color 0.15s; }
-        .ft-bottom a:hover { color: var(--accent); }
-        .legal-links { display: flex; gap: 1.5rem; }
-
-        /* RESPONSIVE */
-        @media (max-width: 960px) {
-            .hero { grid-template-columns: 1fr; gap: 2.5rem; }
-            .skill-grid { grid-template-columns: 1fr 1fr; }
-            .skill-card:nth-child(3n) { border-right: 1px solid var(--line); }
-            .skill-card:nth-child(2n) { border-right: none; }
-            .skill-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--line); }
-            .skill-card:nth-last-child(-n+2) { border-bottom: none; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .ind-row { grid-template-columns: 1fr 1fr; }
-            .ind-cell:nth-child(3n) { border-right: 1px solid var(--line); }
-            .ind-cell:nth-child(2n) { border-right: none; }
-            .ind-cell:nth-last-child(-n+3) { border-bottom: 1px solid var(--line); }
-            .ind-cell:nth-last-child(-n+2) { border-bottom: none; }
-            footer { grid-template-columns: 1fr; }
-            .ft-links { flex-wrap: wrap; }
-        }
-        @media (max-width: 600px) {
-            .nav-links { display: none; }
-            .skill-grid { grid-template-columns: 1fr; }
-            .skill-card { border-right: none !important; border-bottom: 1px solid var(--line) !important; }
-            .skill-card:last-child { border-bottom: none !important; }
-            .career-item { grid-template-columns: 1fr; }
-            .career-left { border-right: none; border-bottom: 1px solid var(--line); }
-            .ind-row { grid-template-columns: 1fr; }
-            .ind-cell { border-right: none !important; border-bottom: 1px solid var(--line) !important; }
-            .ind-cell:last-child { border-bottom: none !important; }
-        }
-
-        [data-r] { opacity: 0; transform: translateY(14px); }
-        [data-r].on { animation: ru 0.55s cubic-bezier(0.22,1,0.36,1) forwards; }
-        @keyframes ru { to { opacity:1; transform:none; } }
-
-        /* BARRIEREFREIHEIT */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { 
-                animation-duration: 0.01ms !important; 
-                animation-iteration-count: 1 !important; 
-                transition-duration: 0.01ms !important; 
-                scroll-behavior: auto !important; 
-            }
-            .marquee-inner { animation: none !important; }
-            [data-r] { opacity: 1 !important; transform: none !important; }
-            [data-r].on { animation: none !important; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-de="Projekte — Leon Wolf" data-en="Projects — Leon Wolf">Projekte — Leon Wolf</title>
+  <meta name="description" content="Web-Apps und Tools von Leon Wolf." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-brand">leon-wolf.dev</a>
+      <div class="nav-links">
+        <a href="index.html" class="active" data-de="Projekte" data-en="Projects">Projekte</a>
+        <a href="about.html" data-de="Über mich" data-en="About">Über mich</a>
+        <div class="lang-switcher">
+          <button data-lang="de">DE</button>
+          <span>|</span>
+          <button data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<header>
-    <span class="nav-name">leon-wolf.dev</span>
-    <ul class="nav-links">
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projekte">Projekte</a></li>
-        <li><a href="#karriere">Karriere</a></li>
-        <li><a href="#branchen">Branchen</a></li>
-        <li><a href="mailto:kontakt@leon-wolf.dev">Kontakt</a></li>
-    </ul>
-</header>
-
-<section class="hero" data-r>
-    <div>
-        <div class="hero-kicker">SAP Developer · Würzburg</div>
-        <h1>
-            Leon Wolf
-            <span class="role">SAP Developer &amp; Solution Architect<br>TM · EWM · ABAP · SCM · S/4HANA</span>
-        </h1>
-        <p class="hero-intro">
-            10+ Jahre Entwicklung im SAP Supply Chain Umfeld — von klassischem SAP SCM bis zu aktuellen S/4HANA-Versionen. Schwerpunkte: SAP TM, EWM, sauberes ABAP und stabile Systemintegration. Von System Prototyping und Customizing über Entwicklung bis hin zu Go-live und Hypercare.
-        </p>
+  <main class="container">
+    <div class="hero">
+      <h1>Leon Wolf</h1>
+      <p data-de="Web-Apps und Tools, die alltägliche Aufgaben einfacher machen."
+         data-en="Web apps and tools that make everyday tasks easier.">
+        Web-Apps und Tools, die alltägliche Aufgaben einfacher machen.
+      </p>
     </div>
 
-    <div class="hero-right">
-        <div class="stat-row">
-            <span class="stat-key">Erfahrung</span>
-            <span class="stat-val"><strong>10+</strong> Jahre SAP Supply Chain</span>
+    <div class="grid">
+      <a href="https://splitti.leon-wolf.dev" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">Splitti</div>
+        <div class="card-desc"
+             data-de="Ausgaben in Gruppen teilen und abrechnen."
+             data-en="Split and settle shared expenses in groups.">
+          Ausgaben in Gruppen teilen und abrechnen.
         </div>
-        <div class="stat-row">
-            <span class="stat-key">Kern-Expertise</span>
-            <span class="stat-val">SAP TM &amp; EWM</span>
-            <span class="stat-badge">S/4HANA</span>
+      </a>
+      <a href="https://arbeitszeit.leon-wolf.dev" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">Arbeitszeit</div>
+        <div class="card-desc"
+             data-de="Arbeitszeiten aus CSV-Dateien analysieren und auswerten."
+             data-en="Analyse and evaluate working hours from CSV files.">
+          Arbeitszeiten aus CSV-Dateien analysieren und auswerten.
         </div>
-
-        <div class="stat-row">
-            <span class="stat-key">Standort</span>
-            <span class="stat-val">Würzburg, Deutschland</span>
+      </a>
+      <a href="https://csv-tool.leon-wolf.dev" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">CSV Tool</div>
+        <div class="card-desc"
+             data-de="CSV-Dateien per Drag &amp; Drop laden und per SQL abfragen."
+             data-en="Load CSV files via drag &amp; drop and query them with SQL.">
+          CSV-Dateien per Drag &amp; Drop laden und per SQL abfragen.
         </div>
-        <div class="stat-row">
-            <span class="stat-key">Sprachen</span>
-            <span class="stat-val">Deutsch · Englisch</span>
+      </a>
+      <a href="https://blaubarschbube.leon-wolf.dev" target="_blank" rel="noopener noreferrer" class="card">
+        <div class="card-title">Blaubarschbube</div>
+        <div class="card-desc"
+             data-de="Mermaid-Diagramme live erstellen und exportieren."
+             data-en="Create and export Mermaid diagrams live.">
+          Mermaid-Diagramme live erstellen und exportieren.
         </div>
-    </div>
-</section>
-
-<div class="marquee-outer" aria-hidden="true">
-    <div class="marquee-inner" id="mq">
-        <div class="marquee-set" id="mq-set">
-            <div class="marquee-item"><span class="marquee-dot"></span>ABAP OO</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>SAP SCM</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>SAP TM</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>SAP EWM</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>S/4HANA embedded TM</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>Customizing</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>Adobe Forms</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>Fiori</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>REST API</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>BRF+</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>BOPF</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>FPM</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>BAdI</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>SOA Manager</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>Data Migration</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>XML Interfaces</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>RF-Dialoge</div>
-            <div class="marquee-item"><span class="marquee-dot"></span>Clean ABAP</div>
-        </div>
-    </div>
-</div>
-
-<section class="section" id="skills">
-    <div class="sec-hd" data-r>
-        <span class="sec-num">01</span>
-        <span class="sec-title">Technische Fähigkeiten</span>
-        <span class="sec-line"></span>
-    </div>
-    <div class="skill-grid" data-r>
-        <div class="skill-card">
-            <div class="sk-area">Transport Management</div>
-            <div class="sk-title">SAP TM · S/4HANA embedded</div>
-            <div class="pill-row">
-                <span class="pill">BOPF</span><span class="pill">FPM</span><span class="pill">BRF+</span>
-                <span class="pill">Frachtabrechnung</span><span class="pill">Optimierer-Konfig.</span>
-            </div>
-        </div>
-        <div class="skill-card">
-            <div class="sk-area">Warehouse Management</div>
-            <div class="sk-title">SAP EWM · SAP WM</div>
-            <div class="pill-row">
-                <span class="pill">RF-Dialoge</span>
-                <span class="pill">BAdI</span><span class="pill">Warenausgang</span>
-            </div>
-        </div>
-        <div class="skill-card">
-            <div class="sk-area">ABAP Development</div>
-            <div class="sk-title">ABAP OO · Customizing · Prototyping</div>
-            <div class="pill-row">
-                <span class="pill">ABAP OO</span><span class="pill">Clean ABAP</span>
-                <span class="pill">Customizing</span><span class="pill">System Prototyping</span>
-                <span class="pill">BAdI</span><span class="pill">User Exits</span>
-                <span class="pill">Enhancement Spots</span><span class="pill">Debugging</span>
-            </div>
-        </div>
-        <div class="skill-card">
-            <div class="sk-area">System Integration</div>
-            <div class="sk-title">REST APIs · SOA · XML</div>
-            <div class="pill-row">
-                <span class="pill">REST API</span><span class="pill">SOA Manager</span>
-                <span class="pill">XML Interfaces</span><span class="pill">Carrier-Anbindung</span>
-                <span class="pill">Web Services</span>
-            </div>
-        </div>
-        <div class="skill-card">
-            <div class="sk-area">Output Management</div>
-            <div class="sk-title">Adobe Forms · PPF</div>
-            <div class="pill-row">
-                <span class="pill">Adobe Forms</span>
-                <span class="pill">PPF</span>
-                <span class="pill">Smart Forms</span>
-            </div>
-        </div>
-        <div class="skill-card">
-            <div class="sk-area">Weitere Kenntnisse</div>
-            <div class="sk-title">Fiori · Data Migration · Testing</div>
-            <div class="pill-row">
-                <span class="pill">Fiori (Grundkenntnisse)</span>
-                <span class="pill">Data Migration</span>
-                <span class="pill">Funktionsspez.</span>
-                <span class="pill">Testing</span>
-                <span class="pill">Dokumentation</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section projects-bg" id="projekte">
-    <div class="sec-hd" data-r>
-        <span class="sec-num">02</span>
-        <span class="sec-title">Projekterfahrung (Auswahl)</span>
-        <span class="sec-line"></span>
-    </div>
-    <div class="projects-grid" data-r>
-
-        <div class="proj-card">
-            <div class="proj-company">Fertigungsunternehmen · Deutschland</div>
-            <div class="proj-title">S/4HANA embedded SAP TM 1909 — Vollimplementierung</div>
-            <ul class="proj-tasks">
-                <li>Technical Design und Konzeption der Gesamtlösung</li>
-                <li>Entwicklung S/4HANA embedded SAP TM (Release 1909)</li>
-                <li>Dokumentation und Testing aller Komponenten</li>
-                <li>Go-live und Hypercare Support</li>
-            </ul>
-            <div class="proj-pills">
-                <span class="proj-pill">SAP TM 1909</span>
-                <span class="proj-pill">S/4HANA embedded</span>
-                <span class="proj-pill">ABAP</span>
-            </div>
-        </div>
-
-        <div class="proj-card">
-            <div class="proj-company">Eisen &amp; Stahl · Deutschland</div>
-            <div class="proj-title">S/4HANA TM + EWM 1809 — XML-Carrier-Integration</div>
-            <ul class="proj-tasks">
-                <li>Technical Design und Entwicklung SAP TM und EWM</li>
-                <li>Erweiterung der SAP XML-Interfaces für Carrier-Kommunikation</li>
-                <li>Dokumentation und Testing</li>
-                <li>Go-live und Hypercare Support</li>
-            </ul>
-            <div class="proj-pills">
-                <span class="proj-pill">SAP TM 1809</span>
-                <span class="proj-pill">SAP EWM 1809</span>
-                <span class="proj-pill">XML Interfaces</span>
-            </div>
-        </div>
-
-        <div class="proj-card">
-            <div class="proj-company">Schiffbau · Deutschland &amp; Finnland</div>
-            <div class="proj-title">SAP EWM 9.4 — Template-Erstellung &amp; 5-Standort-Rollout</div>
-            <ul class="proj-tasks">
-                <li>Template-Erstellung und Rollout auf 3 Standorte in Deutschland und 2 in Finnland</li>
-                <li>Entwicklung, Erweiterung und Testing verschiedener Teilbereiche</li>
-                <li>Technical Design und Entwicklung von Druckdokumenten</li>
-            </ul>
-            <div class="proj-pills">
-                <span class="proj-pill">SAP EWM 9.4</span>
-                <span class="proj-pill">Template Rollout</span>
-                <span class="proj-pill">Adobe Forms</span>
-            </div>
-        </div>
-
-        <div class="proj-card">
-            <div class="proj-company">Automotive · Deutschland</div>
-            <div class="proj-title">SAP EWM 7.02 — Template-Enhancement</div>
-            <ul class="proj-tasks">
-                <li>Technical Design der Erweiterungen</li>
-                <li>Enhancement eines bestehenden Templates in SAP EWM 7.02</li>
-                <li>Entwicklung verschiedener Teilbereiche</li>
-            </ul>
-            <div class="proj-pills">
-                <span class="proj-pill">SAP EWM 7.02</span>
-                <span class="proj-pill">ABAP</span>
-                <span class="proj-pill">BAdI</span>
-            </div>
-        </div>
-
-        <div class="proj-card">
-            <div class="proj-company">Healthcare · Deutschland</div>
-            <div class="proj-title">SAP QM &amp; PP-PI — Enhancements &amp; Entwicklung</div>
-            <ul class="proj-tasks">
-                <li>Technical Design der Lösung</li>
-                <li>Enhancements der SAP QM und PP-PI Umgebung</li>
-                <li>Entwicklung, Erweiterung und Testing verschiedener Teilbereiche</li>
-            </ul>
-            <div class="proj-pills">
-                <span class="proj-pill">SAP QM</span>
-                <span class="proj-pill">SAP PP-PI</span>
-                <span class="proj-pill">ABAP Enhancements</span>
-            </div>
-        </div>
-
-        <div class="proj-card">
-            <div class="proj-company">Fertigungsunternehmen · Deutschland</div>
-            <div class="proj-title">Neuentwicklung kundenspezifischer Dialoge</div>
-            <ul class="proj-tasks">
-                <li>Mitwirkung bei Erstellung der Funktionsspezifikationen</li>
-                <li>Neuentwicklung der vom Kunden geforderten Dialoge</li>
-                <li>Support während der Inbetriebnahmetests</li>
-            </ul>
-            <div class="proj-pills">
-                <span class="proj-pill">ABAP OO</span>
-                <span class="proj-pill">Dialog-Entwicklung</span>
-                <span class="proj-pill">Testing</span>
-            </div>
-        </div>
+      </a>
 
     </div>
-</section>
+  </main>
 
-<section class="section" id="branchen">
-    <div class="sec-hd" data-r>
-        <span class="sec-num">03</span>
-        <span class="sec-title">Branchenerfahrung</span>
-        <span class="sec-line"></span>
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 Leon Wolf</span>
+      <a href="impressum.html">Impressum</a>
     </div>
-    <div class="ind-row" data-r>
-        <div class="ind-cell"><span class="ind-num">01</span><span class="ind-name">Fertigungsindustrie</span></div>
-        <div class="ind-cell"><span class="ind-num">02</span><span class="ind-name">Automobilzulieferer</span></div>
-        <div class="ind-cell"><span class="ind-num">03</span><span class="ind-name">Schiffbau</span></div>
-        <div class="ind-cell"><span class="ind-num">04</span><span class="ind-name">Eisen &amp; Stahl</span></div>
-        <div class="ind-cell"><span class="ind-num">05</span><span class="ind-name">Healthcare / Medizintechnik</span></div>
-        <div class="ind-cell"><span class="ind-num">06</span><span class="ind-name">Lebensmittel &amp; Handel</span></div>
-    </div>
-</section>
+  </footer>
 
-<section class="section" id="karriere">
-    <div class="sec-hd" data-r>
-        <span class="sec-num">04</span>
-        <span class="sec-title">Beruflicher Werdegang</span>
-        <span class="sec-line"></span>
-    </div>
-    <div class="career-list" data-r>
-
-        <div class="career-item">
-            <div class="career-left">
-                <div class="career-period">Dez. 2024 — heute</div>
-                <div class="career-duration">1+ Jahr</div>
-            </div>
-            <div class="career-right">
-                <div class="career-role">SAP Technical Consultant</div>
-                <div class="career-company">ososoft GmbH · Würzburg</div>
-                <div class="career-note">SAP &amp; Cloud Experts — S/4HANA, EWM, TM, BTP</div>
-            </div>
-        </div>
-
-        <div class="career-item">
-            <div class="career-left">
-                <div class="career-period">Nov. 2022 — Dez. 2024</div>
-                <div class="career-duration">2 Jahre 2 Monate</div>
-            </div>
-            <div class="career-right">
-                <div class="career-role">MES MOM Senior Analyst</div>
-                <div class="career-company">Accenture DACH · Würzburg</div>
-                <div class="career-note">SAP-Entwicklung im Produktionsumfeld (MES/MOM)</div>
-            </div>
-        </div>
-
-        <div class="career-item">
-            <div class="career-left">
-                <div class="career-period">Sept. 2014 — Nov. 2022</div>
-                <div class="career-duration">8 Jahre 3 Monate</div>
-            </div>
-            <div class="career-right">
-                <div class="career-role">Software Entwickler</div>
-                <div class="career-company">SALT Solutions GmbH · Würzburg</div>
-                <div class="career-note">SAP TM &amp; EWM Entwicklung — SALT Solutions ist heute Teil von Accenture Industry X</div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<footer>
-    <div>
-        <div class="ft-name">Leon Wolf</div>
-        <div class="ft-loc">Würzburg, Bayern · Deutschland</div>
-    </div>
-    <div class="ft-links">
-        <a href="mailto:kontakt@leon-wolf.dev">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="14" height="10" rx="1.5"/><path d="M1 4l7 5 7-5"/></svg>
-            kontakt@leon-wolf.dev
-        </a>
-        <a href="https://www.linkedin.com/in/leonwolf1/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
-            LinkedIn
-        </a>
-    </div>
-    <div class="ft-bottom">
-        <span>© 2026 Leon Wolf</span>
-        <div class="legal-links">
-            <a href="impressum.html">Impressum</a>
-            <a href="datenschutz.html">Datenschutz</a>
-        </div>
-        <span>SAP Developer · TM · EWM · SCM · ABAP</span>
-    </div>
-</footer>
-
-<script>
-(function(){
-    var inner = document.getElementById('mq');
-    var set   = document.getElementById('mq-set');
-    if (!inner || !set) return;
-    document.fonts.ready.then(function(){
-        var w = set.getBoundingClientRect().width;
-        var n = Math.ceil((window.innerWidth * 3) / w) + 1;
-        for (var i = 0; i < n; i++) inner.appendChild(set.cloneNode(true));
-        inner.style.setProperty('--ms', '-' + w + 'px');
-        inner.style.animationDuration
+  <script src="i18n.js"></script>
+</body>
+</html>
