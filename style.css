@@ -7,7 +7,7 @@
   --surface:   #ffffff;
   --text:      #09090b;
   --muted:     #52525b;
-  --muted-2:   #71717a;
+  --muted-2:   #64646d;
   --accent:    #2563eb;
   --accent-soft: rgba(37, 99, 235, 0.08);
   --border:    #e4e4e7;
@@ -22,7 +22,7 @@
     --surface:   #16161a;
     --text:      #fafafa;
     --muted:     #a1a1aa;
-    --muted-2:   #71717a;
+    --muted-2:   #8a8a93;
     --accent:    #3b82f6;
     --accent-soft: rgba(59, 130, 246, 0.12);
     --border:    #27272a;
@@ -68,8 +68,8 @@ button:focus-visible {
 /* === Reveal-on-load animation === */
 .reveal {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 550ms ease-out, transform 550ms ease-out;
+  transform: translateY(12px);
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
 }
 .reveal.is-visible {
   opacity: 1;
@@ -113,18 +113,21 @@ nav {
 }
 .nav-links a {
   position: relative;
+  display: inline-flex;
+  align-items: center;
   color: var(--muted);
   text-decoration: none;
   font-size: 0.9rem;
-  padding: 0.25rem 0;
+  padding: 0.7rem 0.1rem;
+  margin: -0.7rem -0.1rem;
   transition: color 150ms;
 }
 .nav-links a::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 100%;
-  bottom: -1px;
+  left: 0.1rem;
+  right: calc(100% - 0.1rem);
+  bottom: 0.25rem;
   height: 2px;
   background: var(--accent);
   transition: right 200ms ease-out;
@@ -150,8 +153,8 @@ nav {
   cursor: pointer;
   font-family: inherit;
   font-size: 0.8rem;
-  padding: 0.4rem 0.5rem;
-  margin: -0.4rem -0.5rem;
+  padding: 0.7rem 0.5rem;
+  margin: -0.7rem -0.5rem;
   transition: color 150ms;
 }
 .lang-switcher button:hover,
